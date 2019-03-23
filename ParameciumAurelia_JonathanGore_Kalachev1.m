@@ -77,3 +77,5 @@ figure(5)
    xlabel('time in days')
    ylabel('mean density of P. Aurelia')
    legend('data','book fit','beaverton-holt','Location','NorthWest')
+
+%added comment at the end to pull onto surface via GitHub
