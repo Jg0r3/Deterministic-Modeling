@@ -1,13 +1,13 @@
 % Problem 1.4.2
 % Plot the solution of the continuous model
 format longG %convert 1+e0 to more readable numbers for troubleshooting
-I0 = 1; % initial condition [1 unique cell]
+I0 = 10; % initial condition
 delta_t = input(' time interval in 10 minute intervals, delta_t = '); %?t is 1/10 minute
 t  = [0:delta_t:15];
 nt = length(t)
 alpha = .3; % rate parameter
 I_cont(1) = I0;
-I_cont = I0*exp(alpha*t);   % continuous solution [changed for cell growth]
+I_cont = I0*exp(-alpha*t);   % continuous solution
 %I(t+del_T) = I(t)exp(alpha*t)
 
 
@@ -16,7 +16,7 @@ I_cont = I0*exp(alpha*t);   % continuous solution [changed for cell growth]
 N = length(I_cont);
 I_disc(1) = I0 %defining the intial parameter
 for i = 1:N-1;
-    I_disc(i+1) = I_disc(i) + alpha*delta_t*I_disc(i); % my discrete model for cell growth
+    I_disc(i+1) = I_disc(i) - alpha*delta_t*I_disc(i); % my discrete model for decay
 end
 
 length(I_disc)
