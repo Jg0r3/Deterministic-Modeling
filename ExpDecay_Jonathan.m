@@ -1,13 +1,13 @@
 % Problem 1.4.2
 % Plot the solution of the continuous model
-format longG %convert 1+e0 to more readable numbers for my troubleshooting
-I0 = 10;                 % initial condition [1 unique cell]
+format longG %convert 1+e0 to more readable numbers for troubleshooting
+I0 = 1; % initial condition [1 unique cell]
 delta_t = input(' time interval in 10 minute intervals, delta_t = '); %?t is 1/10 minute
 t  = [0:delta_t:15];
 nt = length(t)
 alpha = .3; % rate parameter
 I_cont(1) = I0;
-I_cont = I0*exp(-alpha*t);   % continuous solution
+I_cont = I0*exp(alpha*t);   % continuous solution [changed for cell growth]
 %I(t+del_T) = I(t)exp(alpha*t)
 
 
@@ -16,7 +16,7 @@ I_cont = I0*exp(-alpha*t);   % continuous solution
 N = length(I_cont);
 I_disc(1) = I0 %defining the intial parameter
 for i = 1:N-1;
-    I_disc(i+1) = I_disc(i) - alpha*I_disc(i); % my discrete model for cell growth
+    I_disc(i+1) = I_disc(i) + alpha*delta_t*I_disc(i); % my discrete model for cell growth
 end
 
 length(I_disc)
