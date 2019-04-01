@@ -1,7 +1,10 @@
-%Discrete Logistic Equation (cobweb illustrative analysis #1):
+%Whale Population Model HW 1 (cobweb illustrative analysis #1):
 clear all
-disp('Logistic equation: x(k+1)=r*x(k)*(1-x(k))')
+format longG
+disp('Whale Population Model: x(k+1)=x(k)+r((M-x(k))(x(k)-m))')
 disp('  ')
+M = 5000; %carrying capacity for whales
+m = 100;  % minimal survival level
 x0=input('Initial condition = ');
 r=input('r = ');
 x(1)=x0;
@@ -26,7 +29,7 @@ plot([x(1) x(1)],[0 x(2)],'r*-')
 pause
 %                                   % Computing and plotting iterations:
 for k=2:30
-   x(k+1)=r*x(k)*(1-x(k))
+   x(k+1)=x(k)+r*(5000-x(k))*(x(k)-100) %x(k+1)=r*x(k)*(1-x(k));
    plot([x(k-1) x(k)],[x(k) x(k)],'r*-')
    plot(x(k),0,'r*','Linewidth',2)
    pause
