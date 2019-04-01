@@ -34,8 +34,7 @@ I_cont'
 
 
 figure(1)
-  plot(t,I_cont,'r',t,I_disc,'b')
-  %plot(t,p,'o',t,p_model,'*-',t,p_model2,'gs-')
-  %plot(t,I_cont,t,I_disc,'o') % use this once you have I_disc
+  %plot(t,I_cont,'r',t,I_disc,'b')
+  plot(t,I_cont,'r',t,I_disc,'o') % use this once you have I_disc
 
   clear all
