@@ -42,7 +42,7 @@ end
 
 k=2; N=540; %INITIAL GUESSES FOR PARAMETES
 
-[alpha_opt,f] = fminsearch(@(alpha) nonlin_ls_Jonathan(alpha,p),[k,N]); %% nonlin_ls_Jonathan is my version of the function
+[alpha_opt,f] = fminsearch(@(alpha) nonlin_ls_Jonathan_Kalachev1(alpha,p),[k,N]); %% nonlin_ls_Jonathan is my version of the function
 % If needed, can add various options: see description in HELP!
 
 %alpha_opt(1) > 2; %keep k above 2 as described in class, alpha_opt(1) = k,

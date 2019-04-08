@@ -27,7 +27,7 @@ plot([x(1) x(1)],[0 x(2)],'r*-')
 pause
 %                                   % Computing and plotting iterations:
 for k=2:10                          % changed from 30 to 10 iterations for troubleshooting, will change back
-   x(k+1)=x(k)-(r*x(k))+b           % changed from original model: x(k+1)=r*x(k)*(1-x(k)) to book model for dosage
+   x(k+1)=x(k)-(r*x(k))+b           % changed from original model: x(k+1)=r*x(k)*(1-x(k))
    plot([x(k-1) x(k)],[x(k) x(k)],'r*-')
    plot(x(k),0,'r*','Linewidth',2)
    pause
