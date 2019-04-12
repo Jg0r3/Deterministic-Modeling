@@ -16,7 +16,7 @@ end                      %end of "for" loop
 
 Linearization(1) = 0;         %initialization (zero power)
 for i = 1:N              % same as for i = 1:1:N
-    Linearization(i+1) = Linearization(i)+1; %2.3.2 model
+    Linearization(i+1) = i+1; %2.3.2 model
 end     
 
 ArrayLength = [0:N]

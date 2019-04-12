@@ -1,8 +1,8 @@
 clear all
 % In this m-file, we simulate the system of differential equations:
 %
-%  X1' = a_11 * X1 + a_12 * X2
-%  X2' = a_21 * X1 + a_22 * X2
+%  du/dt = a_11 * X1 + a_12 * X2
+%  dv/dt = a_21 * X1 + a_22 * X2
 %
 % Parameters: 
 params = input(' Enter [a_11, a_12, a_21, a_22] within square brackets: ');
