@@ -42,3 +42,5 @@ for k=1:40
    axis([1 41 -6000 6000])
    pause
 end
+
+clear all
