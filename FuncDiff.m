@@ -1,32 +1,34 @@
-% %function differentiation finder/solver
+% % % Function Differentiation Finder/Solver
 
-syms x    %derive singular variable functions
-f = sin(5*x);
+% % Function Deriver
 
-diff(f)   %takes 1st derivative
+%%Derive single variable functions
+syms x                           %defines symbol for function
+f = sin(5*x);                    %define function to derive
 
-diff(f,2) %takes 2nd derivative
+diff(f)                          %takes 1st derivative (ex. 1)
 
+diff(f,2)                        %takes 2nd derivative (ex. 2)
 
-syms s t  %derive multiple variable functions
-f = sin(s*t);
+%%%Derive multiple variable functions
+syms s t                         %define symbols for function
 
-diff(f,t) %derives the partial derivative ?f/?t
+f = sin(s*t);                    %define function to derive
+
+diff(f,t)                        %derives the partial derivative ?f/?t
 
 %%%
 
-% %Solve First-Order Linear ODE
+% % Solve First-Order Linear ODE
+%example: ?y/?t = ty
+%first, represent y by using 'syms' to create the symbolic function y(t)
 
-          %example: ?y/?t = ty
-          %first, represent y by using 'syms' to create the symbolic function y(t)
-syms y(t)
+syms y(t)                        %define symbols for first order ODE
 
-
-%define the equation using '==' and represent differentiation using the diff function
-ode(t) = diff(y(t), t) == t*y(t)         
-ySol(t) = dsolve(ode)%Solve the equation using 'dsolve'
+ode(t) = diff(y(t), t) == t*y(t) %define function with '==', represent derivation with 'diff'         
+ySol(t) = dsolve(ode)            %Solve the equation using 'dsolve'
 
 % % Solve First order Linear ODE with condition (from above)
-cond = y(0) == 2;
-ySol(t) = dsolve(ode,cond)
+cond = y(0) == 2;                %define condition
+ySol(t) = dsolve(ode,cond)       %solve with condition
 
