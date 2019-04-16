@@ -32,3 +32,6 @@ ySol(t) = dsolve(ode)            %Solve the equation using 'dsolve'
 cond = y(0) == 2;                %define condition
 ySol(t) = dsolve(ode,cond)       %solve with condition
 
+clear all
+
+

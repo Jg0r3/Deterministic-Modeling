@@ -1,15 +1,14 @@
+%%Derive single variable functions
+% syms x k b                           %defines symbol for function
+% f =  x*log(x^2);                    %define function to derive
+% 
+% diff(f)                          %takes 1st derivative (ex. 1)
 
-% ?u/?t = u-0.01*2u-0.02*uv --> u-0.01*2*u-0.02*u*v
-% ?v/?t = 2u-0.02*2v-0.04*uv --> 2*u-0.02*2*v-0.04*u*v
+%diff(f,2)                       %takes 2nd derivative (ex. 2)
 
-syms u(t) v(t)
+syms x(t)                        %define symbols for first order ODE
 
-%define the equation using '==' and represent differentiation using the diff function
+ode(t) == x(t+2) = 4*x(t+1)-3*x(t) %define function with '==', represent derivation with 'diff'         
+ySol(t) = solve(ode)
 
-ode(t) = diff(u(t), t) == u-0.01*2*u-0.02*u*v
-
-cond = [u(0) == 20,v(0) == 10];
-          
-ySol(t) = dsolve(ode,cond)%Solve the equation using 'dsolve'
-
-clear all
+clear all   
