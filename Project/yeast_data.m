@@ -16,7 +16,6 @@ K_vvh_2 = [0.054 0.11 0.141 0.199 0.257 0.296 0.348 0.397 0.41]';
 % Vessel 2 Optical Density at the steady state
 K_OD_2 = [0.164 0.151 0.11 0.092 0.072 0.023 0.006 0.002 0.004]';
 
-
 %-----------------------------------
 
 % Sensitive- Run
@@ -29,3 +28,15 @@ S_OD_1 = [0.54 0.494 0.459 0.395 0.229 0.019 0.006 0.003 0]';
 S_vvh_2 = [0.0571 0.126 0.196 0.263 0.313 0.383]';
 % Vessel 2 Optical Density at the steady state
 S_OD_2 = [0.385 0.456 0.363 0.197 0.044 0.004]';
+
+% figure(1)
+% scatter(K_vvh_1,K_OD_1)
+% 
+% figure(2)
+% scatter(K_vvh_2,K_OD_2)
+% 
+% figure(3)
+% scatter(S_vvh_1,S_OD_1)
+% 
+% figure(4)
+% scatter(S_vvh_2, S_OD_2)

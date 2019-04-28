@@ -110,22 +110,22 @@ S_vvh_1 = [0.041 0.099 0.167 0.223 0.266 0.328 0.356 0.401 0.462]';
 S_OD_1 = [0.54 0.494 0.459 0.395 0.229 0.019 0.006 0.003 0]';
 
 %define na/nb
-S_vvh_1_na = S_vvh_1(1:6);
-S_vvh_1_nb = S_vvh_1(7:9);
+S_vvh_1_na = S_vvh_1(1:8);
+S_vvh_1_nb = S_vvh_1(9);
 
 %%plot and define linreg for K_vvh_1_na
 figure(3)
-scatter(S_vvh_1_na,S_OD_1(1:6),'b','o')
+scatter(S_vvh_1_na,S_OD_1(1:8),'b','o')
 xlim([0 .45]);
 ylim([0 1]);
 hold on
-P = polyfit(S_vvh_1_na,S_OD_1(1:6),1);
+P = polyfit(S_vvh_1_na,S_OD_1(1:8),1);
 yfit = P(1)*S_vvh_1_na+P(2);
 xfit = 0; %flat line for last residuals
 plot(S_vvh_1_na,yfit,'r');
 hold on
 %completes scatter-plot with ALL data points for visuals
-scatter(S_vvh_1(7:9),S_OD_1(7:9),'b', 'o')
+scatter(S_vvh_1(9),S_OD_1(9),'b', 'o')
 hold on
 
 %creates environment to solve for t*
@@ -197,5 +197,20 @@ hold off
 %find residuals of linreg(na)
 residuals_S_vvh_2_na = S_vvh_2_na - yfit
 residuals_S_vvh_2_nb = S_vvh_2_nb - xfit
+
+%%% next steps?:
+
+%%% ranking linear regressions with the smallest
+
+mdl_1 = fitlm(X,y)
+
+%%defining different gamma values
+
+gamma_K_vvh_1 =
+gamme_K_vvh_2 =
+gamma_S_vvh_1 =
+gamma_S_vvh_2 =
+
+clear all
 
 clear all
