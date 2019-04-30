@@ -55,9 +55,9 @@ residuals_K_vvh_1_nb = K_vvh_1_nb - xfit;
 %clear all
 
 % %
-% Vessel 2 Vessel Volumes/Hr
+% Vessel 2 Vessel Volumes/Hr f/v
 K_vvh_2 = [0.054 0.11 0.141 0.199 0.257 0.296 0.348 0.397 0.41]';
-% Vessel 2 Optical Density at the steady state
+% Vessel 2 Optical Density at the steady state N1,2
 K_OD_2 = [0.164 0.151 0.11 0.092 0.072 0.023 0.006 0.002 0.004]';
 %pop 'a' (1:7), pop 'b' (8:9)
 
@@ -215,13 +215,49 @@ alpha_k_2 = C_0/y_int_k2(1)
 alpha_s_1 = C_0/y_int_s1(1)
 alpha_s_2 = C_0/y_int_s2(1)
 % 
-k_k_1 = y_int_k1(1)/(C_0*slope_k1)
-k_k_2 = y_int_k2(1)/(C_0*slope_k2)
-k_s_1 = y_int_s1(1)/(C_0*slope_s1)
-k_s_2 = y_int_s2(1)/(C_0*slope_s2)
+k_k_1 = -y_int_k1(1)/(C_0*slope_k1)
+k_k_2 = -y_int_k2(1)/(C_0*slope_k2)
+k_s_1 = -y_int_s1(1)/(C_0*slope_s1)
+k_s_2 = -y_int_s2(1)/(C_0*slope_s2)
 
-%%%defining linear regression in terms of optimal alpha and k
+%%%graphing competition models with various values of gamma and k
+% f_v = 1;
+% k = k_k1;
+% g = .1;
+% N1(1) = K_vvh_1(1);
+% N2(1) = S_vvh_1(1);
+% iterations = [1:30];
+% yeast_model_1 = zeros(size(iterations));
 
+%%%ODEsolve2
+% In this m-file, we simulate the system of differential equations:
+%
+%  dN1/dt = (k1*C_0*N1)-(g*n1*n2)-(f_v*N1)
+%  dN2/dt = (k2*C*N2)-(f_v*N2)
+%  dC/dt  = (-a1*k1*C*N1)-(a2&k2*C*N2)-(f_v*C)+(f_v*C_0)
+%
+% Parameters: [params = [k1, k2, g, a1, a2, f_v, C_0]
+k1 = input('input value for k1: ');
+k2 = input('input value for k2: ');
+g = input('input value for g: ');
+a1 = input('input value for a1: ');
+a2 = input('input value for a2: ');
+f_v = input('input value for f_v: ');
+C_0 = 0.02;
+
+params = [k1, k2, g, a1, a2, f_v, 0.02];
+% time interval of integration:
+time1=[0,10];
+% initial conditions (for ex, [k_vvh_1(1), s_vvh_1(1), :
+x_0 = [K_vvh_1(1),S_vvh_1(1),0.02];
+% Solve system of ODEs
+[t,x]=ode45(@(t,x) system2ODE_yeast(t,x,params),time1,x_0);
+% plot the results:
+figure(5), plot(t,x,'*-')
+legend('Sensitive (N1)','Toxin-Producing (N2)','Food Concentration (C)')
+xlabel('Time')
+ylabel('Population')
+title('Hypothetical Yeast Competition')
 
 
 clear all
