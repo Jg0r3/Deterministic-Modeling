@@ -39,10 +39,10 @@ f = (a*x) + b == 0;
 %solves for x-intercept
 maybe_t_star = vpasolve(f);
 
-disp('K_vvh_1: ')
-y_int_k1 = [P_1(2), 0] 
-x_int_k1 = [0, maybe_t_star(1)]
-slope_k1 = P_1(1)
+disp('K_vvh_1: ');
+y_int_k1 = [P_1(2), 0]; 
+x_int_k1 = [0, maybe_t_star(1)];
+slope_k1 = P_1(1);
 
 %adds lingreg line to figure(1)
 scatter(x_int_k1, y_int_k1, 'g', '*')
@@ -89,10 +89,10 @@ f = (a*x) + b == 0;
 %solves for x-intercept
 maybe_t_star = vpasolve(f);
 
-disp('K_vvh_2: ')
-y_int_k2 = [P_2(2), 0] 
-x_int_k2 = [0, maybe_t_star(1)]
-slope_k2 = P_2(1)
+disp('K_vvh_2: ');
+y_int_k2 = [P_2(2), 0]; 
+x_int_k2 = [0, maybe_t_star(1)];
+slope_k2 = P_2(1);
 
 %adds lingreg line to figure(1)
 scatter(x_int_k2, y_int_k2, 'g', '*')
@@ -139,10 +139,10 @@ f = (a*x) + b == 0;
 %solves for x-intercept
 maybe_t_star = vpasolve(f);
 
-disp('S_vvh_1: ')
-y_int_s1 = [P_3(2), 0] 
-x_int_s1 = [0, maybe_t_star(1)]
-slope_s1 = P_3(1)
+disp('S_vvh_1: ');
+y_int_s1 = [P_3(2), 0]; 
+x_int_s1 = [0, maybe_t_star(1)];
+slope_s1 = P_3(1);
 
 %adds lingreg line to figure(1)
 scatter(x_int_s1, y_int_s1, 'g', '*')
@@ -188,10 +188,10 @@ f = (a*x) + b == 0;
 %solves for x-intercept
 maybe_t_star = vpasolve(f);
 
-disp('S_vvh_2: ')
-y_int_s2 = [P_4(2), 0] 
-x_int_s2 = [0, maybe_t_star(1)]
-slope_s2 = P_4(1)
+disp('S_vvh_2: ');
+y_int_s2 = [P_4(2), 0]; 
+x_int_s2 = [0, maybe_t_star(1)];
+slope_s2 = P_4(1);
 
 %adds lingreg line to figure(1)
 scatter(x_int_s2, y_int_s2, 'g', '*')
@@ -229,35 +229,33 @@ k_s_2 = -y_int_s2(1)/(C_0*slope_s2)
 % iterations = [1:30];
 % yeast_model_1 = zeros(size(iterations));
 
-%%%ODEsolve2
-% In this m-file, we simulate the system of differential equations:
+%%%create model comparison graphs
 %
 %  dN1/dt = (k1*C_0*N1)-(g*n1*n2)-(f_v*N1)
 %  dN2/dt = (k2*C*N2)-(f_v*N2)
 %  dC/dt  = (-a1*k1*C*N1)-(a2&k2*C*N2)-(f_v*C)+(f_v*C_0)
 %
 % Parameters: [params = [k1, k2, g, a1, a2, f_v, C_0]
-k1 = input('input value for k1: ');
-k2 = input('input value for k2: ');
+k1 = 17.3186868883777 %input('input value for k1: '); normally 17.3186868883777
+k2 = 19.38458885026 %input('input value for k2: '); normally 19.38458885026
 g = input('input value for g: ');
-a1 = input('input value for a1: ');
-a2 = input('input value for a2: ');
-f_v = input('input value for f_v: ');
+a1 = 0.114415126281216 %input('input value for a1: ');
+a2 = 0.0293539174303705 %input('input value for a2: ');
+f_v = 0.207 %input('input value for f_v: ');
 C_0 = 0.02;
 
 params = [k1, k2, g, a1, a2, f_v, 0.02];
 % time interval of integration:
-time1=[0,10];
+time1=[0,500];
 % initial conditions (for ex, [k_vvh_1(1), s_vvh_1(1), :
 x_0 = [K_vvh_1(1),S_vvh_1(1),0.02];
 % Solve system of ODEs
 [t,x]=ode45(@(t,x) system2ODE_yeast(t,x,params),time1,x_0);
 % plot the results:
-figure(5), plot(t,x,'*-')
+figure(5), plot(t,x,'-') %% normally the line is defined as '*-'
 legend('Sensitive (N1)','Toxin-Producing (N2)','Food Concentration (C)')
-xlabel('Time')
-ylabel('Population')
-title('Hypothetical Yeast Competition')
-
+xlabel('Time (n)')
+ylabel('Population (optical density)')
+title('Yeast Competition Model Comparison')
 
 clear all
